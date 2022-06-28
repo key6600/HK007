@@ -1,10 +1,12 @@
- 申请Freenom域名的正确做法  https://1drv.ms/w/s!Akco49yyqyqDtFXjm4iy26Mvv-ES?e=cCC6Wl
+ 1.注册Heroku账号：https://signup.heroku.com/login?redirect
 
- CloudFlare Workers 被墙解决方案  https://1drv.ms/w/s!Akco49yyqyqDtFK69rvLkNevKxyY?e=HegeOL
+ 2.需要反代理的可配合下面的服务商进行套接
 
- Heroku搭建教程  [https://www.youtube.com/watch?v=yqyaZzL_BJc]
+ 申请Freenom域名：https://www.freenom.com/
 
-
+ 注册CloudFlare Workers ：https://www.cloudflare.com/
+ 
+ 
 ## v2ray-heroku
 
 [![](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/key6600/HK007.git)https://heroku.com/deploy?template=
@@ -199,20 +201,62 @@ export default {
 ### 客户端配置
 
 ```
-  - 别名: "yourName"
-    协议: vless
-    地址: yourName.workers.dev
-    端口: 443
-    用户id: yourUuid
-    流控: xtls-rprx-direct
-    加密: none
-    伪装域名: yourName.workers.dev
-    传输类型: ws
-    路径: /
-    传输层安全：tls   跳过证书验证：false
-    SNI：yourName.workers.dev
+
+IOS端小火箭就可以通吃，安卓端推荐V2rayNG或搭配Kitsunebi
+
+协议：(vless/vmess/trojan)-ws
+
+地址：app.heroku.com（自选IP/域名）
+
+端口：443
+
+用户ID/密码：自定义UUID
+
+传输协议：ws
+
+伪装host：app.heroku.com（workers或pages反代/自定义域）
+
+路径path：/自定义UUID-协议开头两小写字母
+
+传输安全：tls
+
+SNI：app.heroku.com（workers或pages反代/自定义域）
+
+其他设置保持默认即可！
+
+
+
+shadowsocks-ws与socks5-ws推荐用Kitsunebi，配置简单，不需要plugin插件
+
+协议：(shadowsocks/socks5)-ws
+
+地址：app.heroku.com（自选IP/域名）
+
+端口：443
+
+shadowsocks密码：自定义UUID
+
+shadowsocks加密方式：chacha20-ietf-poly1305(默认)
+
+socks5用户名：空
+
+socks5密码：空
+
+传输协议：ws
+
+伪装host：app.heroku.com（workers或pages反代/自定义域）
+
+路径path：/自定义UUID-协议开头两小写字母
+
+传输安全：tls
+
+SNI(证书域名)：app.heroku.com（workers或pages反代/自定义域）
+
+其他设置保持默认即可！
+
+
 ```
 
 
 
-特别鸣谢：Misaka、rptec、DaoChen6大佬提供脚本、教程和思路
+特别鸣谢：Misaka、rptec、DaoChen6、甬哥，等大佬提供脚本、教程和思路！
